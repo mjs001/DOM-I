@@ -6,6 +6,7 @@ const siteContent = {
     "nav-item-4": "Features",
     "nav-item-5": "About",
     "nav-item-6": "Contact",
+
     "img-src": "img/logo.png"
   },
   "cta": {
@@ -40,3 +41,56 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+
+//Nav
+let nav=document.querySelectorAll('nav a');
+nav.forEach((item,i)=>{
+   item.textContent=siteContent["nav"]["nav-item-"+(i+1)];
+   item.style.color="green";
+});
+
+//Cta
+let cta=document.querySelector('.cta-text h1');
+let ctaMsg=siteContent["cta"]["h1"];
+let pos=ctaMsg.indexOf("Is");
+ctaMsg=ctaMsg.substring(0,pos)+"<BR>"+ctaMsg.substring(pos+2,3)+"<BR>"+ctaMsg.substring(pos+2);
+cta.innerHTML=ctaMsg;
+
+let button=document.querySelector('.cta-text button');
+button.textContent=siteContent["cta"]["button"];
+
+let ctaLogo = document.getElementById("cta-img");
+ctaLogo.setAttribute('src', siteContent["cta"]["img-src"])
+
+//Main Content
+
+let contentHeader = document.querySelectorAll(".text-content h4");
+let mainContent = siteContent ["main-content"];
+let arr = Object.keys (mainContent).filter(obj => obj.includes("h4"));
+for (let i=0; i<contentHeader.length; i++) {
+  contentHeader[i].textContent = siteContent["main-content"][`${arr[i]}`]
+}
+
+let contentText = document.querySelectorAll(".text-content p");
+arr = Object.keys (mainContent).filter(obj => obj.includes("content"));
+for (let i=0; i<contentHeader.length; i++) {
+  contentText[i].textContent = siteContent["main-content"][`${arr[i]}`]
+}
+
+//Mid image
+let middleLogo = document.getElementById("middle-img");
+middleLogo.setAttribute('src', siteContent["main-content"]["middle-img-src"])
+
+//Contact
+let contact=document.querySelector('.contact');
+contact.childNodes[1].textContent=siteContent["contact"]["contact-h4"];
+let addressArray = siteContent['contact']['address'].split(' ');
+addressArray.splice(4, 0, '\r\n');
+contact.childNodes[3].innerText=addressArray.join(' ');
+contact.childNodes[5].textContent=siteContent["contact"]["phone"];
+contact.childNodes[7].textContent=siteContent["contact"]["email"];
+
+//Footer
+let footer=document.querySelector('footer');
+footer.textContent=siteContent["footer"]["copyright"];
